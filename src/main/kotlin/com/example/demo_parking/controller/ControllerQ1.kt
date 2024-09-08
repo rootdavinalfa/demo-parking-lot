@@ -1,5 +1,7 @@
 package com.example.demo_parking.controller
 
+import com.example.demo_parking.dto.ParkDTO
+import com.example.demo_parking.dto.ParkFeeDTO
 import com.example.demo_parking.entity.OccupiedParking
 import com.example.demo_parking.entity.ParkingConf
 import com.example.demo_parking.service.OccupiedParkingService
@@ -34,8 +36,8 @@ class ControllerQ1(
     fun createConfiguration(
         @Validated
         @RequestBody configuration: ParkingConf
-    ) {
-        parkingConfService.save(configuration)
+    ): ParkingConf {
+        return parkingConfService.save(configuration)
     }
 
     @PutMapping("/config")
@@ -43,8 +45,14 @@ class ControllerQ1(
     fun updateConfiguration(
         @Validated
         @RequestBody configuration: ParkingConf
-    ) {
-        parkingConfService.update(configuration)
+    ): ParkingConf {
+        return parkingConfService.update(configuration)
+    }
+
+    @GetMapping("/config/{id}")
+    @Operation(summary = "Get configuration")
+    fun getConfiguration(@PathVariable id: Long): ParkingConf {
+        return parkingConfService.findById(id)
     }
 
     @PostMapping("/parking/arrive")
@@ -53,8 +61,8 @@ class ControllerQ1(
         @RequestBody
         @Validated
         occupiedParking: OccupiedParking
-    ) {
-        occupiedParkingService.park(occupiedParking)
+    ): ParkDTO {
+        return occupiedParkingService.park(occupiedParking)
     }
 
     @PutMapping("/parking/leave")
@@ -62,9 +70,9 @@ class ControllerQ1(
     fun leave(
         @RequestBody
         @Validated
-        occupiedParking: OccupiedParking
-    ) {
-        occupiedParkingService.leavePark(occupiedParking)
+        parkDTO: ParkDTO
+    ): ParkFeeDTO {
+        return occupiedParkingService.leavePark(parkDTO.id ?: -1)
     }
 
 

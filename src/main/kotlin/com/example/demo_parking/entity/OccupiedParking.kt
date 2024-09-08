@@ -34,11 +34,11 @@ class OccupiedParking : AuditedClass() {
     var registrationNo: String = ""
 
     @Column(name = "ARRIVAL")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.[SSS]")
     var arrival: LocalDateTime? = null
 
     @Column(name = "LEAVE")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.[SSS]")
     var leave: LocalDateTime? = null
 
     @Column(name = "CONF_ID", nullable = false)

@@ -13,22 +13,22 @@ class ParkingConfService(
 ) {
 
     @Transactional(rollbackFor = [ResourceExistsException::class])
-    fun save(parkingConf: ParkingConf) {
+    fun save(parkingConf: ParkingConf): ParkingConf {
 
         if (exists(parkingConf.id)) {
             throw ResourceExistsException("Data is exists.")
         }
 
-        parkingConfRepository.save(parkingConf)
+        return parkingConfRepository.save(parkingConf)
     }
 
     @Transactional(rollbackFor = [ResourceNotFoundException::class])
-    fun update(parkingConf: ParkingConf) {
+    fun update(parkingConf: ParkingConf): ParkingConf {
         if (!exists(parkingConf.id)) {
             throw ResourceNotFoundException("Data not found.")
         }
 
-        parkingConfRepository.save(parkingConf)
+        return parkingConfRepository.save(parkingConf)
     }
 
     @Transactional(readOnly = true)
