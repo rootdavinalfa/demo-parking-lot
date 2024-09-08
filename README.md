@@ -13,4 +13,4 @@ Answer for
 - Q2 you may find on file Dockerfile and .github/workflows/main.yml
 - Q3 on swagger with group `Controller Q3` or /q3 endpoint
 
-For automatically run the test, you may want to run `./gradlew bootTestRun`
+For automatically run the test, you may want to run `./gradlew test`
