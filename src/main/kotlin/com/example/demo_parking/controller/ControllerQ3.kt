@@ -5,7 +5,7 @@ import io.swagger.v3.oas.annotations.tags.Tag
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RestController
+@RestController("/q3")
 @Tag(name = "Controller Q3")
 class ControllerQ3 {
 
